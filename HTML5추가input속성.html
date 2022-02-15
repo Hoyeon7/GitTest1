@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>html5추가input속성</title>
+</head>
+
+<body>
+   <h1>HTML5에서 추가된 input 속성</h1>
+   <form action="서버측 파일" autocomplete="on" id="form1"> 
+       <input type="text" name="name" value="미리적힌값">
+       입력창에 미리 글자를 적어놓게 세팅하는 기능
+       <br>
+
+    <input type="text" name="auto" autofocus>
+    autofocus는 F5 새로고침시 입력창에 입력 준비 상태로 만들어주는 기능
+    <br>
+
+
+    <input list="food" name="food"> list속성중 option입니다. 입력창에 메뉴 선택을 할수 있게 하는 기능.
+    <br>
+    <datalist id="food">
+        <option value="한식"></option>
+        <option value="양식"></option>
+    </datalist>
+    <br>
+    <input type="file" value="파일" multiple> multiple을 사용하면 여러 파일을 선택할수 있게 됨. <br>
+    <input type="text" pattern="[a-z]"> <br>
+    pattern은 들어가는 문자의 반복, 규칙 <br>
+
+    <input type="text" name="place" placeholder="힌트"> placeholder는 입력창에 회색빛으로 글자를 미리 나타나게 하는 기능
+    <br>
+
+    <input type="text" required> required는 placeholder 입력창에 글자를 입력하고 엔터칠경우 이곳 입력창에서 "이 입력란을 작성하세요" 라는 문구를 띄워줌<br>
+    빈값일 경우 전달되지 않는다. <br>
+
+    <input type="number" step="2"> step은 화살표를 눌려서 숫자를 ?칸씩 건너뛰며 선택하게 하는 기능 <br>
+
+
+    <!--버튼입니다.-->
+    <input type="image" src="./img file/naver.png" alt="전송" height="100" width="200">
+    <br>
+    버튼 기능을 원하는 이미지로 바꾸는 기능
+
+    <input type="submit" value="버튼" formaction="다른서버측 파일.html"
+    formenctype="application/x-www-form-urlencoded">
+    버튼을 눌렸을때 다른 html화면으로 넘어가게 하는 기능. <br>
+    그리고 인코딩을 바꾸거나 서버측 파일을 바꿀수 있다. <br>
+    차후에 서버할때 다시 확인 <br><br>
+    
+</form>
+
+    <input type="text" name="form" form="form1">
+    
+
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>캠퍼스</title>
+</head>
+
+<body>
+   <h1>canvas 확인하기</h1>
+
+<!-- canvas는 동영상 조작, 애니 작업할때 유용함,
+svg는 정적인 작업이나 고품질 문서 작업할 때 주로 사용. -->
+
+
+
+   <figure>
+       <img id="naver" src="../HTML5/img file/naver.png">
+       <figcaption>네이버 이미지</figcaption>
+    </figure>
+<!-- 자바스크립트에 쓰려면 'id' 를 만들어줘야
+자바스크립트 켄버스 안에 넣을수 있음,
+.drawImage 명령어 쓸때 필수임.-->
+
+
+   <canvas id="myCanvas" width="300" height="200"
+   style="border: 3px solid black">
+</canvas>
+
+
+<h1>svg 확인하기</h1>
+
+
+<svg width="300" height="200"
+style="border: 3px solid black;">
+
+<!-- SVG 라인 그어보기-->
+<line x1="50" y1="0" x2 = "100" y2="350"
+stroke="orange" stroke-width="5"></line>
+    
+<!-- SVG 원 만들어 보기-->
+<circle cx="50" cy="50" r="40"
+stroke="green" stroke-width="4" fill="yellow"></circle>
+
+<!-- SVG 사각 도형 그려보기-->
+<rect x="150" y="10" width="140" height="80"
+style = "stroke: rgb(0,0,255);
+stroke-width: 3; fill: rgb(255,255,0);"></rect>
+
+<!-- rx와 ry는 사각형의 라운드를 조절하는 값임.
+    스타일에서 stroke-width는 테두리 선의 두깨를 설정하는 값임,
+    opacity는 투명도를 설정하는 값임, 숫자가 낮아질수록 투명해짐,-->
+<rect x="170" y="50" rx="25" ry="50"  
+width="100" height="200"
+style="
+stroke: black;
+stroke-width: 5;
+fill: red;
+opacity: 1;"></rect>
+</svg>
+
+
+
+<script>
+    //하얀 종이에 원하는 영역만큼 색을 입히기 작업 할 것임
+    let paper = document.getElementById("myCanvas"); 
+    let context = paper.getContext("2d");
+    // 작접할 종이를 준비하는 명령어
+
+
+    context.fillStyle="#FF5000";
+    context.fillRect(0,0,150, 75); 
+    //해당 위치에 FF5000색상의 사각 영역 만들기
+    
+
+//동그란 원을 원하는 위치에 그려넣기, context.fill(); 을 사용할 경우 원 안에 색을 칠할수 있다
+//원은 그리기전에 패스를 초기화한다
+    context.beginPath()
+    context.arc(50,100,10, 0, 2*Math.PI);
+    context.fill(); 
+    context.strokeStyle="#FFFF00"
+    context.stroke();
+/*
+패스를 지정한 후에 선을 그린다.
+*/
+
+//x0,y0에서 x100,y75지점으로 선을 이어준다는 명령어. context.stroke();는 명령 끝을 의미함
+context.moveTo(0,0); //시작점
+context.lineTo(150,75); //끝점
+context.stroke(); //그려준다.
+
+context.font = "30px Arial";
+context.fillStyle = "#0000FF";
+context.fillText("CANVAS", 14, 46 );
+//저 CANVAS라는 문자는 7시방향을 기준점으로 오른쪽 좌표(X14,Y46만큼 움직인다.
+//fillText는 작성할 내용과, x(시작위치) y(문자의 바닥)에서부터 시작한다.
+
+//그라디언트 종류 : 선형/원형  2가지가 있다.
+let grd = context.createRadialGradient(0, 200, 5, 0, 200, 100);
+//Radial : 원형그라디언트 (시작 원의 x,y 중심점, 반지름, 끝나는 원의 x, y중심점, 반지름)
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+
+context.fillStyle = grd
+context.fillRect(0,150, 150, 50)
+
+let grdline = context.createLinearGradient(0,200,150,200);
+// Linear : 선형그라디언트 (시작 x,y , 끝 x,y)
+grdline.addColorStop(0,"blue");
+grdline.addColorStop(1,"yellow");
+
+context.fillStyle = grdline;
+context.fillRect(0,150, 150, 50);
+
+context.strokeStyle = grdline;
+context.rect(0,120, 150, 20);
+context.stroke();
+
+let ficture = document.getElementById("naver");
+//getElementById("~") 는 ~라는 id 자료를 가지고 온다는 명령어임.
+context.drawImage(ficture, 0, 250);
+
+
+    console.log(paper);
+</script>
+
+</body>
+
+</html>
